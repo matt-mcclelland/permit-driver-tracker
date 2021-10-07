@@ -1,5 +1,5 @@
 <% content_for :title do %>
-  Driver's Permit Log &ndash; <%= Time.now %>
+  Driver's Permit Log &ndash; <%= Time.now.to_s(:nice_date) %>
 <% end %>
 
 <div class="columns mt-6 is-centered">
