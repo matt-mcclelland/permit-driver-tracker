@@ -2,34 +2,30 @@
   Driver's Permit Log &ndash; <%= Time.now %>
 <% end %>
 
-<h1>Entries</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Hours Driven</th>
-      <th>Miles Driven</th>
-      <th>Notes</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @entries.each do |entry| %>
-      <tr>
-        <td><%= entry.name %></td>
-        <td><%= entry.hours_driven %></td>
-        <td><%= entry.miles_driven %></td>
-        <td><%= entry.notes %></td>
-        <td><%= link_to 'Show', entry %></td>
-        <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
-        <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Entry', new_entry_path %>
+<div class="columns mt-6 is-centered">
+  <% @entries.each do |entry| %>
+    <div class="column is-one-quarter">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title is-centered"><%= entry.name %></p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <p><span class="has-text-weight-bold">Hours: </span><%= entry.hours_driven %></p>
+            <p><span class="has-text-weight-bold">Miles Driven: </span><%= entry.miles_driven %></p>
+            <p><span class="has-text-weight-bold">Notes: </span><%= entry.notes %></p>
+            <p class="is-italic">Logged <%= time_ago_in_words(entry.created_at) %> ago.</p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <%= link_to 'Show', entry, class: "card-footer-item" %>
+          <%= link_to 'Edit', edit_entry_path(entry), class: "card-footer-item" %>
+          <%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' }, class: "card-footer-item" %>
+      </div>
+    </div>
+    <br>
+    <div class="box has-text-centered">
+      <%= link_to 'New Entry', new_entry_path, class: "button is-success" %>
+    </div>
+  <% end %>
+</div>
