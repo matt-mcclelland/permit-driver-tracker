@@ -1,0 +1,35 @@
+<div class="columns is-centered mt-6">
+    <div class="column is-half">
+        <% @entries.each do |day, entries| %>
+            <h3 class="is-size-4 has-text-weight-bold mb-4 mt-4 has-text-centered">Trips on <%= day %></h3>
+
+            <nav class="level is-mobile">
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Hours Driven</p>
+                        <p class="title"><%= entries.pluck(:hours_driven).sum %>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Miles Driven</p>
+                        <p class="title"><%= entries.pluck(:miles_driven).sum %>
+                    </div>
+                </div>
+            </nav>
+
+            <% entries.each do |entry| %>
+                <%= link_to entry_path(entry) do %>
+                    <div class="card">
+                        <div class="card-content">
+                            <strong><%= entry.name %></strong><br/>
+                            <%= entry.hours_driven %> hours,
+                            <%= entry.miles_driven %> miles, Notes: 
+                            <%= entry.notes %>
+                        </div>
+                    </div>
+                <% end %>
+            <% end %>
+        <% end %>
+    </div>
+</div>
