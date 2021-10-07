@@ -1,37 +1,40 @@
 <%= form_with(model: entry) do |form| %>
   <% if entry.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
-
-      <ul>
-        <% entry.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div class="message is-danger">
+      <div class="message-header">
+        <p><%= pluralize(entry.errors.count, "error") %> prohibited this entry from being saved:</p>
+      </div>
+      <div class="message-body">
+        <ul>
+          <% entry.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>  
     </div>
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.label :name, class: "label" %>
+    <%= form.text_field :name, class: "input" %>
   </div>
 
   <div class="field">
-    <%= form.label :hours_driven %>
-    <%= form.text_field :hours_driven %>
+    <%= form.label :hours_driven, class: "label" %>
+    <%= form.text_field :hours_driven, class: "input" %>
   </div>
 
   <div class="field">
-    <%= form.label :miles_driven %>
-    <%= form.number_field :miles_driven %>
+    <%= form.label :miles_driven, class: "label" %>
+    <%= form.number_field :miles_driven, class: "input" %>
   </div>
 
   <div class="field">
-    <%= form.label :notes %>
-    <%= form.text_field :notes %>
+    <%= form.label :notes, class: "label" %>
+    <%= form.text_field :notes, class: "input" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "button is-success"%>
   </div>
 <% end %>
