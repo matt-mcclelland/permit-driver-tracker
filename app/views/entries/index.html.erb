@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<% content_for :title do %>
+  Driver's Permit Log &ndash; <%= Time.now %>
+<% end %>
 
 <h1>Entries</h1>
 
@@ -6,8 +8,8 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Hours driven</th>
-      <th>Miles driven</th>
+      <th>Hours Driven</th>
+      <th>Miles Driven</th>
       <th>Notes</th>
       <th colspan="3"></th>
     </tr>
